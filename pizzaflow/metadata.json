@@ -1,0 +1,6 @@
+{
+  "name": "PizzaFlow",
+  "description": "A production-ready pizza ordering web application integrated with Supabase and Databricks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
