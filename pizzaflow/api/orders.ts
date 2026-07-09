@@ -1,18 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
-
-const supabaseAdmin =
-  supabaseUrl && supabaseServiceRoleKey
-    ? createClient(supabaseUrl, supabaseServiceRoleKey, {
-        auth: {
-          persistSession: false,
-          autoRefreshToken: false,
-        },
-      })
-    : null;
-
 export default async function handler(req: any, res: any) {
   if (req.method !== "GET") {
     return res.status(405).json({
@@ -22,15 +9,19 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    if (!supabaseAdmin) {
-      return res.status(200).json({
-        success: true,
-        orders: [],
-        warning: "Supabase environment variables are missing.",
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      return res.status(500).json({
+        success: false,
+        error: "Supabase environment variables are missing",
       });
     }
 
-    const { data, error } = await supabaseAdmin
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const { data, error } = await supabase
       .from("pizzaflow_order_audit")
       .select("*")
       .order("created_at", { ascending: false })
@@ -50,7 +41,7 @@ export default async function handler(req: any, res: any) {
   } catch (error: any) {
     return res.status(500).json({
       success: false,
-      error: error.message || "Failed to fetch orders.",
+      error: error.message || "Failed to load orders",
     });
   }
 }
