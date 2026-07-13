@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useState, useEffect } from 'react';
 import ChatBot from "./components/ChatBot";
 import { 
   Pizza, 
