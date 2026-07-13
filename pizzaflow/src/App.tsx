@@ -653,7 +653,7 @@ export default function App() {
           </div>
         </div>
       </div>
-
+     <ChatBot />
       {/* Footer */}
       <footer className="px-6 py-4 md:px-8 bg-[#2D2D2D] text-white flex flex-col sm:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest shrink-0 gap-2 border-t-4 border-[#2D2D2D] mt-8">
         <div>PIZZAFLOW v2.4.0 • PRODUCTION READY</div>
