@@ -517,9 +517,12 @@ export default function App() {
                       <tbody className="divide-y divide-gray-100 font-medium text-[#2D2D2D]">
                         {recentOrders.map((order) => (
                           <tr key={order.id} className="hover:bg-slate-50/50 transition-colors">
-                            <td className="p-3 text-xs font-mono text-gray-500 truncate max-w-[100px]" title={order.id}>
-                              #{order.id.slice(0, 8)}
-                            </td>
+                           <td
+  className="p-3 text-xs font-mono text-gray-500 truncate max-w-[100px]"
+  title={String(order.id)}
+>
+  #{order.id}
+</td>
                             <td className="p-3">
                               <div className="font-bold text-[#2D2D2D]">{order.customer}</div>
                               <div className="text-[10px] text-gray-500">{order.phone}</div>
