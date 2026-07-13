@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import React from "react";
+import ChatBot from "./components/ChatBot";
 import { 
   Pizza, 
   User, 
